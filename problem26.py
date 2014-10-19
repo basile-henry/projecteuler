@@ -1,7 +1,7 @@
 primes = [2]
 i = 3
 
-while primes[-1] < 1000:
+while primes[-1] < 100000:
 	isPrime = True
 
 	for p in primes:
