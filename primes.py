@@ -9,7 +9,17 @@ def getPrimesAt(a, b):
 	return primes[a:b]
 
 def getIndexOf(p):
-	return primes.index(p)
+	try:
+		return primes.index(p)
+	except ValueError:
+		return -1
+
+def getCloserPrimeIndex(n):
+	i = -1
+	while i == -1:
+		i = getIndexOf(n)
+		n-=1
+	return i
 	
 def getPrimesBetween(a, b):
 	return primes[primes.index(a):primes.index(b)]
