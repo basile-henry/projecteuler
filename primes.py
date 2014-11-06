@@ -26,3 +26,4 @@ def getPrimesBetween(a, b):
 
 def isPrime(n):
 	return n in primes
+
