@@ -8,8 +8,8 @@ def getTruncated(n):
 
 	return out
 
-s = 8897
-i = primes.getIndexOf(3797)+1
+s = 0#8897
+i = primes.getIndexOf(7)+1
 l = []
 
 while len(l) < 11:

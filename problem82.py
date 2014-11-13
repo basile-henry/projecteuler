@@ -1,18 +1,16 @@
 from copy import copy, deepcopy
 
-temp = open("problem82data.txt",'r')
+temp = open("problem81-82-83data.txt",'r')
 data = [map(int, x.split(',')) for x in temp.read().split('\n') if x != '']
 temp.close()
 
-c = deepcopy(data)
-
-print c == data
+c = [deepcopy(data) for j in range(3)]
 
 def getPath(y, x, direction):
 
 	# caching mechanism
-	if c[y][x] != data[y][x]:
-		return c[y][x]
+	if c[direction+1][y][x] != data[y][x]:
+		return c[direction+1][y][x]
 
 	ret = data[y][x]
 	if x < len(data[y]) - 1:
@@ -42,7 +40,7 @@ def getPath(y, x, direction):
 			else:
 				ret += getPath(y, x+1, 0)
 
-	c[y][x] = ret
+	c[direction+1][y][x] = ret
 	return ret
 
 #to build the ting
