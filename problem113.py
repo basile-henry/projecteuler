@@ -1,13 +1,22 @@
-cache = [[0 for x in range(102)] for y in range(10)] 
+l = 6
+
+cache = [[0 for x in range(l)] for y in range(10)]
 
 def asc(min, n):
-	if n == 1:
-		return 10 - n
+	if n == 0:
+		return 1
 
-	if cache[min][n] > 0:
-		return cache[min][n]
+	if cache[min][n-1] > 0:
+		return cache[min][n-1]
 
-	cache[min][n] = sum([asc(m, n-1) for m in range(min, 10)])
-	return cache[min][n]
+	cache[min][n-1] = sum([asc(m, n-1) for m in range(min, 10)])
+	return cache[min][n-1]
 
-print 2*asc(0,10) - 10
+def getNonBouncies(n):
+	s = 0
+	for i in range(10):
+		s += asc(i, n)
+	return 2 * s - 10
+
+print getNonBouncies(l)
+print cache
