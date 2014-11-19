@@ -1,20 +1,22 @@
+pents = []
+
 def getPent(n):
 	return n*(3*n-1)/2
 
-def mainLoop():
-	pents = []
+def check():
+	for top in reversed(pents):
+		for bottom in pents:
+			if top + bottom == pents[-1]:
+				if top - bottom in pents:
+					print top - bottom
+					return False
+			if bottom == top:
+				break
 
-	for i in range(1,20000):
-		pents.append(getPent(i))
+	return True
 
-	for i in range(1,len(pents)-500):
-		for j in range(1,500):
-			if (pents[i + j] - pents[i]) in pents:
-				if (pents[i + j] + pents[i]) in pents:
-					print pents[i], pents[i+j], pents[i+j]-pents[i]
-					return
-		
-		if i%100 == 0:
-			print i
+i = 0
 
-mainLoop()
+while check():
+	i+=1
+	pents.append(getPent(i))

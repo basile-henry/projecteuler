@@ -1,11 +1,18 @@
 def getPeriod(d):
-	n = 1
+	n = 10
 	remainders = []
 
-	while not (n - n/d) in remainders:
-		remainders.append((n - n/d))
-		n = (n - n/d) * 10
+	while not n%d in remainders:
+		if n%d == 0:
+			return 0
+		remainders.append(n%d)
+		n = n%d * 10
 
-	return len(remainders) - remainders.index(n - n/d)
+	return len(remainders) - remainders.index(n%d)
 
-print getPeriod(7)
+m = 0
+
+for i in range(1,1000):
+	if getPeriod(i) > m:
+		m = getPeriod(i)
+		print i, m
