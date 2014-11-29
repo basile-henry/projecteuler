@@ -1,14 +1,8 @@
-def getPans(l):
-	if len(l) == 1:
-		return [str(l[0])]
+import primes2 as primes
 
-	ret = []
-	for x in l:
-		p = l[:]
-		p.remove(x)
-		for y in getPans(p):
-			ret.append(str(x) + y)
+def isPan(n):
+	return set(map(int, str(n))) == set(range(1, len(str(n))+1))
 
-	return ret
-
-print getPans(range(0,10))[999999]
+for p in primes.primes:
+	if isPan(p):
+		print p

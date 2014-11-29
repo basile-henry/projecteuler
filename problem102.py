@@ -1,21 +1,18 @@
-import math
-
 temp = open("problem102data.txt", 'r')
 triangles = [map(int, t.split(',')) for t in temp.read().split('\n') if t != '']
 temp.close()
 
-def diff(a, b):
-	diff = a - b
-	if diff < -math.pi:
-		return diff + 2*math.pi
-	if diff > math.pi:
-		return diff - 2*math.pi
-	return diff
+def isInside(p1, p2, p3):
+	alpha = ((p2[1] - p3[1])*(0 - p3[0]) + (p3[0] - p2[0])*(0 - p3[1])) / float((p2[1] - p3[1])*(p1[0] - p3[0]) + (p3[0] - p2[0])*(p1[1] - p3[1]))
+	beta = ((p3[1] - p1[1])*(0 - p3[0]) + (p1[0] - p3[0])*(0 - p3[1])) / float((p2[1] - p3[1])*(p1[0] - p3[0]) + (p3[0] - p2[0])*(p1[1] - p3[1]))
+	gamma = 1.0 - alpha - beta
 
-s = 0
+	return alpha > 0 and beta > 0 and gamma > 0
+
+count = 0
+
 for t in triangles:
-	angles = [math.atan2(t[1], t[0]), math.atan2(t[3], t[2]), math.atan2(t[5], t[4])]
+	if isInside([t[0], t[1]], [t[2], t[3]], [t[4], t[5]]):
+		count+=1
 
-	if abs(diff(t[0],t[1])) >= math.pi or abs(diff(t[1],t[2])) >= math.pi or abs(diff(t[0],t[2])) >= math.pi:
-		s+=1
-		print s
+print count

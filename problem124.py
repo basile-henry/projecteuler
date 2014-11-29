@@ -5,14 +5,15 @@ def getPrimeDivisors(n):
 	
 	divs = []
 	i = 0
+	p = getPrimeAt(0)
 
 	while n > 1:
-		p = getPrimeAt(i)
 		if n%p == 0:
 			divs.append(p)
 			n /= p
 		else:
 			i += 1
+			p = getPrimeAt(i)
 
 	return divs
 
